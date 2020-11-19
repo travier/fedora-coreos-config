@@ -34,6 +34,11 @@ remove-from-packages:
   # We don't want auto-generated mount units. See also
   # https://github.com/systemd/systemd/issues/13099
   - [systemd-udev, /usr/lib/systemd/system-generators/systemd-gpt-auto-generator]
+  # Ignition is responsible for partition setup on first boot and does not use
+  # systemd-repart currently. See also
+  # https://github.com/coreos/fedora-coreos-tracker/issues/570
+  - [systemd-udev, /usr/lib/systemd/system/initrd-root-fs.target.wants/systemd-repart.service,
+                   /usr/lib/systemd/system/sysinit.target.wants/systemd-repart.service]
 
 postprocess:
   # Undo RPM scripts enabling units; we want the presets to be canonical
