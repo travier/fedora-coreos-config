@@ -1,0 +1,17 @@
+{
+  "version": "2",
+  "pipelines": [
+    {
+      "runner": "org.osbuild.fedora38",
+      "name": "rootfs",
+      "stages": [
+        {
+          "type": "org.osbuild.rpm-ostree-unified-core",
+          "options": {
+            "manifest": "manifest.yaml"
+          }
+        }
+      ]
+    }
+  ]
+}
