@@ -11,6 +11,9 @@ rojig:
 add-commit-metadata:
   fedora-coreos.stream: ${stream}
 
+# Include all container engines by default
+variables:
+  container_engines: true
 
 include: fedora-coreos-base.yaml
 conditional-include:
@@ -34,6 +37,10 @@ conditional-include:
     include: composefs.yaml
   - if: releasever >= 41
     include: selinux-workaround.yaml
+  - if: container_engines == true
+    include:
+      - podman.yaml
+      - moby-engine.yaml
 
 ostree-layers:
   - overlay/15fcos
@@ -51,10 +58,6 @@ packages:
   # the archive repo for more reliable package layering
   # https://github.com/coreos/fedora-coreos-tracker/issues/400
   - fedora-repos-archive
-  # CL ships this.
-  - moby-engine
-  # Already pulled in by moby-engine, but let's be explicit. Typhoon uses it.
-  - containerd
   # Updates
   - zincati
   # Include and set the default editor

@@ -36,15 +36,6 @@ packages:
   - kexec-tools
   # Remote Access
   - openssh-clients openssh-server
-  # Container tooling
-  ## crun recommends but doesn't require criu and criu-libs. We want them for
-  ## checkpoint/restore. https://github.com/coreos/fedora-coreos-tracker/issues/1370
-  - crun criu criu-libs
-  - podman
-  - skopeo
-  - toolbox
-  # passt provides user-mode networking daemons for namespaces
-  - passt
   # nvme-cli for managing nvme disks
   - nvme-cli
   # Used by admins interactively
