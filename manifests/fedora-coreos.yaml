@@ -13,7 +13,8 @@ add-commit-metadata:
 
 # Include all container engines by default
 variables:
-  container_engines: true
+  # container_engines: true
+  container_engines: false
 
 include: fedora-coreos-base.yaml
 conditional-include:
